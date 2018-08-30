@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style media="screen">
+  input[type="text"]{
+    width:300px;
+  }
+</style>
+{% for task in tasks %}
+  <div class="">
+    <form action="/admin/tasks/update" method="post">
+      {{ task["id"] }}
+      <input name="id" type="hidden" value="{{ task["id"] }}" />
+      <div class="form-group">
+        标题
+        <input class="form-control" name="title" type="text" value="{{ task["title"] }}" />
+      </div>
+      <div class="form-group">
+        内容
+        <input class="form-control" name="text" type="text" value="{{ task["text"] }}" />
+      </div>
+      <div class="form-group">
+        图标
+        <input class="form-control" name="icon" type="text" value="{{ task["icon"] }}" />
+      </div>
+      <div class="form-group">
+        姓名
+        <input class="form-control" name="users" type="text" value="{{ task["users"] }}" />
+      </div>
+      <div class="form-group">
+        状态
+        <input class="form-control" name="status" type="text" value="{{ task["status"] }}" />
+      </div>
+      <div class="form-group">
+        申领任务地址
+        <input class="form-control" name="url" type="text" value="{{ task["url"] }}" />
+      </div>
+
+
+      <input type="submit" value="update" type="button" class="btn btn-primary" />
+    </form>
+    <form class="" action="/admin/tasks/delete" method="post">
+      <input name="id" type="hidden" value="{{ task["id"] }}" />
+      <input type="submit" value="delete" type="button" class="btn btn-danger" />
+    </form>
+  </div>
+{% endfor %}
+
+
+<form class="form-group" action="/admin/tasks/insert" method="post">
+  <div class="form-group">
+    标题
+    <input class="form-control" name="title" type="text" />
+  </div>
+  <div class="form-group">
+    内容
+    <input class="form-control" name="text" type="text" />
+  </div>
+  <div class="form-group">
+    图标
+    <input class="form-control" name="icon" type="text" />
+  </div>
+  <div class="form-group">
+    姓名
+    <input class="form-control" name="users" type="text" />
+  </div>
+  <div class="form-group">
+    状态
+    <input class="form-control" name="status" type="text" />
+  </div>
+  <div class="form-group">
+    申领任务地址
+    <input class="form-control" name="url" type="text" />
+  </div>
+  <input type="submit" value="insert" />
+</form>

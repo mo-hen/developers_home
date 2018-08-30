@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>admin</title>
+    <style media="screen">
+      iframe{
+        width: 90%;
+        height: 90%;
+        position: fixed;
+        left: 200px;
+        right: 20px;
+        top: 50px;
+        bottom: 0px;
+        border: 0px;
+        overflow: scroll;
+        display: block;
+      }
+      .left_menu a{
+        width: 200px;
+        height: 40px;
+        float: left;
+        clear: left;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Admin</h2>
+    <div class="left_menu">
+      <a target="main" href="/admin/navs">navs</a>
+      <a target="main" href="/admin/banner">banner</a>
+      <a target="main" href="/admin/tasks">tasks</a>
+      <a target="main" href="/admin/samples">samples</a>
+      <a target="main" href="/admin/documents">documents</a>
+      <a target="main" href="/admin/tools">tools</a>
+      <a target="main" href="/admin/videos">videos</a>
+      <a target="main" href="/admin/communitys">communitys</a>
+      <a href="/logout">logout</a>
+    </div>
+    <iframe name="main" src="" width="" height=""></iframe>
+  </body>
+</html>

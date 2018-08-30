@@ -1,0 +1,356 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: #5157d8;
+  background-image: url(/static/images/bg.png);
+  background-size: 1000px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  font-family: sans-serif;
+}
+.wapper{
+    width: 1000px;
+    margin: 0 auto;
+}
+/* 导航栏 */
+.nav{
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+}
+.logo{
+  width: 300px;
+  height: 80px;
+  float: left;
+}
+.menu{
+  width: 660px;
+  height: 80px;
+  float: left;
+}
+/* 导航栏的文字链接 */
+.menu a{
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+  float: right;
+}
+.menu a:link{
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 介绍 */
+.banner{
+  height: 557px;
+  position: relative;
+  background: #5358da;
+}
+.banner_title{
+  height: 130px;
+  font-size: 50px;
+  width: 500px;
+  padding-left: 20px;
+  padding-top: 140px;
+  color: #fff;
+}
+.banner_text{
+  color: #fff;
+  height: 300;
+  width: 500px;
+  margin-top: 30px;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 30px;
+}
+.banner_image{
+  width: 445px;
+  position: absolute;
+  top: 80px;
+  right: 18px;
+  height: 410px;
+}
+.banner_image img{
+  width: 100%;
+  height: 100%
+}
+
+/* 任务 */
+.tasks{
+  width: 100%;
+  height: 650px;
+}
+
+.tasks_title{
+  width: 100%;
+  height: 195px;
+}
+
+/* 任务中的循环块 */
+.task{
+  width: 308px;
+  height: 355px;
+  margin-left: 20px;
+  float: left;
+  text-align: center;
+}
+.task_icon{
+  width: 100%
+  height: 100px;
+  text-align: center;
+}
+.task_icon img{
+  width: 60px;
+  margin-top: 25px;
+}
+.task_title{
+  width: 90%;
+  height: 80px;
+  line-height: 80px;
+  margin:0 auto;
+  text-align: left;
+}
+.task_text{
+  width: 90%;
+  height: 98px;
+  margin:0 auto;
+  text-align: left;
+}
+.claim{
+  width: 90%;
+  height: 80px;
+  line-height: 80px;
+  margin:0 auto;
+  text-align: left;
+}
+.more_tasks_button{
+  width: 100%;
+  height: 60px;
+  float: left;
+  position: relative;
+}
+.more_tesks{
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+
+.samples{
+
+  width: 100%;
+  height: 550px;
+}
+.samples_title{
+  width: 100%;
+  height: 152px;
+}
+.sample{
+  width: 308px;
+  height: 340px;
+  margin-left: 20px;
+  float: left;
+  text-align: center;
+}
+
+.sample_icon{
+  width: 100%
+  height: 100px;
+  text-align: center;
+}
+.sample_icon img{
+  width: 60px;
+  margin-top: 25px;
+}
+.sample_title{
+  width: 90%;
+  height: 80px;
+  line-height: 80px;
+  margin:0 auto;
+  text-align: left;
+}
+.sample_text{
+  width: 90%;
+  height: 98px;
+  margin:0 auto;
+  text-align: left;
+}
+
+.more_samples_button{
+  width: 100%;
+  height: 60px;
+  float: left;
+  position: relative;
+}
+.more_samples{
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+
+.documents{
+  width: 100%;
+  height: 550px;
+}
+.documents_title{
+    width: 100%;
+    height: 200px;
+}
+.document_title{
+  width: 560px;
+  float: right;
+  height: 70px;
+  font-size: 30px;
+}
+.document_text{
+  width: 530px;
+  height: 150px;
+  float: right;
+  clear: right;
+  padding-right: 30px;
+}
+.documents_url{
+  width: 250px;
+  height: 50px;
+  float: right;
+  clear: right;
+  margin-top: 15px;
+  margin-right: 320px;
+}
+.documents_url_link{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tools{
+  width: 100%;
+  height: 600px;
+}
+.tools_title{
+  height: 240px;
+  width: 100%;
+}
+.tool{
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin-left: 25px;
+}
+.tool_header{
+  width: 100%;
+  height: 60px;
+}
+.tool_icon{
+  width: 30px;
+  height: 30px;
+  margin: 15px 0px 0px 35px;
+  float: left;
+  clear: both;
+}
+.tool_icon img{
+  width: 100%;
+  height: 100%;
+}
+.tool_title{
+  float: left;
+  line-height: 60px;
+  color: #000;
+  width: 200px;
+  padding-left: 20px;
+}
+.tool_text_area{
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+.tool_text{
+  position: absolute;
+  width: 90%;
+  margin: 0 auto;
+  height: auto;
+  top: 30px;
+  left: 40px;
+}
+.tool_downlowd{
+  width: 100%;
+  height: 40px;
+}
+.tool_downlowd a{
+  display: block;
+  height: 40px;
+  width: 135px;
+  color:#3759cb;
+  margin-left: 40px;
+  line-height: 40px;
+  border: solid 1px #3759cb;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration:none;
+}
+
+.videos{
+  width: 100%;
+  height: 550px;
+}
+.videos_title{
+  width: 100%;
+  height: 230px;
+}
+.video{
+  width: 300px;
+  height: 220px;
+  margin-left: 20px;
+  float: left;
+  position: relative;
+}
+.video img{
+  width: 100%;
+  height: 100%;
+}
+.video_title{
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  color: #fff;
+}
+.more_videos_button{
+  width: 100%;
+  height: 60px;
+  float: left;
+  position: relative;
+}
+.more_videos{
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+.communitys{
+  width: 100%;
+  height: 500px;
+  text-align: center;
+}
+.communitys_title{
+  width: 100%;
+  height: 150px;
+}
+.community{
+  width: 100px;
+  height: 100px;
+  background: blue;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px 0px;
+  /* float: left; */
+  overflow: hidden;
+  margin: 0 auto;
+  display: inline-block;
+  margin: 20px;
+  margin-top: 60px;
+}
+.community img{
+  width: 100%;
+  height: 100%;
+}

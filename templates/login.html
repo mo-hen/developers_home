@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/jsSHA/src/sha.js"></script>
+    <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        background: url(/static/images/loginbg/{{num}}.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center 0;
+      }
+      .login_pan{
+        width: 400px;
+        height: auto;
+        background: #fff;
+        margin: 15% auto;
+        padding: 30px;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login_pan">
+      <div id="error_msg" class="form-group">
+        输入用户名和密码登录
+      </div>
+      <div class="form-group">
+        <input type="text" id="username" class="form-control" name="username" placeholder="输入用户名" value="">
+      </div>
+      <div class="form-group">
+        <input type="text" id="passwd" class="form-control" name="passwd" placeholder="输入密码" value="">
+      </div>
+
+      <input id="login_button" type="button" class="btn btn-primary" name="" value="登录">
+      <input id="reg_button" disabled="disabled" type="button" class="btn btn-success" name="" value="注册(暂不开放)">
+    </div>
+    <script type="text/javascript">
+      function hash_passwd(passwd){
+        var shaObj = new jsSHA("SHA-224", "TEXT");
+        shaObj.update(passwd);
+        return shaObj.getHash("HEX");
+      }
+      $("#login_button").click(function(){
+        username = $("#username").val();
+        passwd = $("#passwd").val();
+        var passwd = hash_passwd(passwd);
+        $.post("/login", {username:username,passwd:passwd} ,function( data ) {
+          console.log(data)
+          if(data=="err"){
+            $("#error_msg").text("登录失败");
+            console.log("登录失败");
+          }
+          if(data=="ok"){
+            console.log("登录成功");
+            window.location.href="/admin";
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style media="screen">
+  input[type="text"]{
+    width:500px;
+  }
+  textarea{
+    width:500px;
+    height: 500px;
+  }
+</style>
+
+<form action="/admin/banner/update" method="post">
+  <div class="form-group">
+    <input class="form-control" name="title" type="text" value="{{ banner[0]["title"] }}" />
+  </div>
+  <div class="form-group">
+    <textarea class="form-control" name="text" type="text" >{{ banner[0]["text"] }}</textarea>
+  </div>
+  <div class="form-group">
+    <input class="form-control" name="img" type="text" value="{{ banner[0]["img"] }}" />
+  </div>
+  <input type="submit" value="save" type="button" class="btn btn-primary" />
+</form>

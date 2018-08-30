@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style media="screen">
+  input[type="text"]{
+    width:300px;
+  }
+</style>
+{% for community in communitys %}
+  <div class="">
+    <form action="/admin/communitys/update" method="post">
+      {{ community["id"] }}
+      <input name="id" type="hidden" value="{{ community["id"] }}" />
+      <div class="form-group">
+        标题
+        <input class="form-control" name="title" type="text" value="{{ community["title"] }}" />
+      </div>
+      <div class="form-group">
+        图标
+        <input class="form-control" name="icon" type="text" value="{{ community["icon"] }}" />
+      </div>
+      <div class="form-group">
+        地址
+        <input class="form-control" name="url" type="text" value="{{ community["url"] }}" />
+      </div>
+      <input type="submit" value="update" type="button" class="btn btn-primary" />
+    </form>
+    <form class="" action="/admin/communitys/delete" method="post">
+      <input name="id" type="hidden" value="{{ community["id"] }}" />
+      <input type="submit" value="delete" type="button" class="btn btn-danger" />
+    </form>
+  </div>
+{% endfor %}
+
+
+<form class="form-group" action="/admin/communitys/insert" method="post">
+  <div class="form-group">
+    标题
+    <input class="form-control" name="title" type="text" />
+  </div>
+  <div class="form-group">
+    图标
+    <input class="form-control" name="icon" type="text" />
+  </div>
+  <div class="form-group">
+    链接
+    <input class="form-control" name="url" type="text" />
+  </div>
+  <input type="submit" value="insert" />
+</form>

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style media="screen">
+  input[type="text"]{
+    width:500px;
+  }
+  textarea{
+    width:500px;
+    height: 500px;
+  }
+</style>
+
+<form action="/admin/documents/update" method="post">
+  <div class="form-group">
+    title
+    <input class="form-control" name="title" type="text" value="{{ document[0]["title"] }}" />
+  </div>
+  <div class="form-group">
+    text
+    <textarea class="form-control" name="text" type="text" >{{ document[0]["text"] }}</textarea>
+  </div>
+  <div class="form-group">
+    img
+    <input class="form-control" name="img" type="text" value="{{ document[0]["img"] }}" />
+  </div>
+  <div class="form-group">
+    url
+    <input class="form-control" name="url" type="text" value="{{ document[0]["url"] }}" />
+  </div>
+  <input type="submit" value="save" type="button" class="btn btn-primary" />
+</form>

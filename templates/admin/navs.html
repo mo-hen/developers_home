@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style media="screen">
+  input[type="text"]{
+    width:300px;
+  }
+</style>
+{% for nav in navs %}
+  <div class="">
+    <form action="/admin/navs/update" method="post">
+      {{ nav["id"] }}
+      <input name="id" type="hidden" value="{{ nav["id"] }}" />
+      <div class="form-group">
+        <input class="form-control" name="title" type="text" value="{{ nav["title"] }}" />
+      </div>
+      <div class="form-group">
+        <input class="form-control" name="url" type="text" value="{{ nav["url"] }}" />
+      </div>
+      <input type="submit" value="update" type="button" class="btn btn-primary" />
+    </form>
+    <form class="" action="/admin/navs/delete" method="post">
+      <input name="id" type="hidden" value="{{ nav["id"] }}" />
+      <input type="submit" value="delete" type="button" class="btn btn-danger" />
+    </form>
+  </div>
+{% endfor %}
+
+
+<form class="form-group" action="/admin/navs/insert" method="post">
+  <input class="form-control" name="title" type="text" value="" />
+  <input class="form-control" name="url" type="text" value="" />
+  <input type="submit" value="insert" />
+</form>
