@@ -108,6 +108,7 @@ body {
 .task, .sample {
     margin-top: 100px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -191,9 +192,14 @@ body {
     text-decoration: none;
 }
 
+.sample{
+    margin-top: 75px;
+}
+
 .sample-item {
     width: 380px;
     height: 420px;
+    margin-top: 25px;
     text-align: center;
     box-shadow: 0 4px 16px 0 rgba(55, 89, 203, 0.20);
     border-radius: 10px;
@@ -274,9 +280,10 @@ body {
 
 .tools {
     width: 100%;
-    height: 742px;
+    min-height: 742px;
     margin-top: 120px;
     padding-top: 90px;
+    padding-bottom: 130px;
     background: #F8F9FB;
 }
 
@@ -288,13 +295,16 @@ body {
 }
 
 .tools_contents{
-    margin-top: 140px;
+    margin-top: 80px;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .tools-item{
     width: 280px;
+    margin-top: 60px;
+    margin-left: 68px;
 }
 
 .tool_header {
@@ -425,13 +435,10 @@ body {
     text-align: center;
 }
 
-.community-item:nth-child(odd){
-    margin-right: 107px;
-}
-
 .community-item {
     width: 126px;
     height: 126px;
+    margin: 0 53px;
     border-radius: 126px;
     display: inline-block;
     background: rgba(255,255,255,0.00);
