@@ -1,160 +1,180 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>landing page</title>
     <link href="/static/css/style.css?v=1.01" rel="stylesheet">
-  </head>
-  <body>
+</head>
+<body>
+<div class="head">
     <div class="wapper">
-      <div class="nav">
-        <div class="logo">
-          <img src="/static/logo.png" alt="">
-        </div>
-        <div class="menu">
-          {% if "username" in session %}
-            <a href="/user/">{{ session["username"] }}</a>
-          {% else %}
-            <a href="/login">login</a>
-          {% endif %}
-          {% for nav in navs %}
-            <a href="{{ nav["url"] }}">{{ nav["title"] }}</a>
-          {% endfor %}
+        <div class="nav">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="">
+            </div>
+            <div class="menu">
+                {% if "username" in session %}
+                <a href="/user/">{{ session["username"] }}</a>
+                {% else %}
+                <a href="/login">login</a>
+                {% endif %}
+                {% for nav in navs %}
+                <a href="{{ nav[" url"] }}">{{ nav["title"] }}</a>
+                {% endfor %}
 
-        </div>
-      </div>
-      <div id="banner" class="banner">
-        <div class="banner_title">
-          {{banner.title}}
-        </div>
-        <div class="banner_text">
-          {{banner.text}}
-        </div>
-        <div class="banner_image">
-          <img src="{{banner.img}}" />
-        </div>
-      </div>
-      <div id="tasks" class="tasks">
-        <div class="tasks_title">
-
-        </div>
-        {% for task in tasks %}
-          <div class="task">
-            <div class="task_icon">
-              <img src="{{ task["icon"] }}" alt="">
             </div>
-            <div class="task_title">
-              <h3>{{ task["title"] }}</h3>
+        </div>
+        <div id="banner" class="banner">
+            <div class="banner_title">
+                {{banner.title}}
             </div>
-            <div class="task_text">
-              <p>{{ task["text"] }}</p>
+            <div class="banner_text">
+                {{banner.text}}
             </div>
-            <div class="claim">
-              {% if task["status"]=="finish"  %}
-                  <a>finish</a>
-              {% else %}
-                  <a href="{{task["url"]}}" target="_blank">claim</a>
-              {% endif %}
+            <div class="banner_image">
+                <img src="{{banner.img}}"/>
             </div>
-          </div>
-        {% endfor %}
-        <div class="more_tasks_button">
-          <a href="#" class="more_tesks">more</a>
         </div>
-      </div>
-
-      <div id="samples" class="samples">
-        <div class="samples_title">
-
-        </div>
-        {% for sample in samples %}
-          <div class="sample">
-            <div class="sample_icon">
-              <img src="{{ sample["icon"] }}" alt="">
-            </div>
-            <div class="sample_title">
-              <h3>{{ sample["title"] }}</h3>
-            </div>
-            <div class="sample_text">
-              <p>{{ sample["text"] }}</p>
-            </div>
-            <div class="read">
-              <a href="{{sample["url"]}}" target="_blank">read</a>
-            </div>
-          </div>
-        {% endfor %}
-        <div class="more_samples_button">
-          <a href="#" class="more_samples">more</a>
-        </div>
-      </div>
-      <div id="documents" class="documents">
-        <div class="documents_title">
-
-        </div>
-        <div class="document_title">
-          {{document.title}}
-        </div>
-        <div class="document_text">
-          {{document.text}}
-        </div>
-        <div class="documents_url">
-          <a class="documents_url_link" href="{{document.url}}"> </a>
-        </div>
-      </div>
-      <div id="tools" class="tools">
-        <div class="tools_title">
-
-        </div>
-        {% for tool in tools %}
-          <div class="tool">
-            <div class="tool_header">
-              <div class="tool_icon">
-                <img src="{{ tool["icon"] }}" alt="">
-              </div>
-              <div class="tool_title">
-                {{ tool["title"] }}
-              </div>
-            </div>
-            <div class="tool_text_area">
-              <div class="tool_text">
-                {{ tool["text"] }}
-              </div>
-            </div>
-            <div class="tool_downlowd">
-              <a href="{{tool["url"]}}" target="_blank">DOWNLOAD</a>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      <div id="videos" class="videos">
-        <div class="videos_title">
-
-        </div>
-        {% for video in videos %}
-          <div class="video">
-            <a href="{{video["url"]}}" target="_blank">
-              <img src="{{ video["icon"] }}" alt="">
-              <div class="video_title">{{ video["title"] }}</div>
-            </a>
-          </div>
-        {% endfor %}
-        <div class="more_videos_button">
-          <a href="#" class="more_videos">more</a>
-        </div>
-      </div>
-      <div id="communitys" class="communitys">
-        <div class="communitys_title">
-
-        </div>
-        {% for community in communitys %}
-          <div class="community">
-            <a href="{{community["url"]}}" target="_blank">
-              <img src="{{ community["icon"] }}" title="{{ community["title"] }}">
-            </a>
-          </div>
-        {% endfor %}
-      </div>
     </div>
-  </body>
+</div>
+<div class="wapper">
+    <!--tasks-->
+    <div id="tasks" class="tasks">
+        <div class="tasks_title">Tasks</div>
+        <div class="task">
+            {% for task in tasks %}
+            <div class="task-item">
+                <div class="task_icon">
+                    <img src='{{ task["icon"] }}' alt="">
+                </div>
+                <div class="task_title">
+                    {{ task["title"] }}
+                </div>
+                <div class="task_text">
+                    {{ task["text"] }}
+                </div>
+                <div class="claim">
+                    {% if task["status"]=="finish" %}
+                    <a>finish</a>
+                    {% else %}
+                    <a href='{{task["url"]}}' target="_blank">claim</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="more_tasks_button">
+            <a href="#" class="more_tesks">More Samples >>></a>
+        </div>
+    </div>
+    <!--samples-->
+    <div id="samples" class="samples">
+        <div class="samples_title">Samples</div>
+        <div class="sample">
+            {% for sample in samples %}
+            <div class="sample-item">
+                <div class="sample_icon">
+                    <img src="{{ sample['icon'] }}" alt="">
+                </div>
+                <div class="sample_title">
+                    {{ sample["title"] }}
+                </div>
+                <div class="sample_text">
+                    {{ sample["text"] }}
+                </div>
+                <div class="read">
+                    <a href="{{sample['url']}}" target="_blank">READ</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="more_samples_button">
+            <a href="#" class="more_samples">More Samples >>></a>
+        </div>
+    </div>
+    <!--documents-->
+    <div id="documents" class="documents">
+        <div class="documents_title">Documents</div>
+        <div class="doc-img">
+            <img src="" alt="">
+        </div>
+        <div class="doc-content">
+            <div class="document_title">
+                {{document.title}}
+            </div>
+            <div class="document_text">
+                {{document.text}}
+            </div>
+            <div class="documents_url">
+                <a class="documents_url_link" href="{{document.url}}">SEE ALL DOCUMENTS</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!--SDK & Tools-->
+<div id="tools" class="tools">
+    <div class="wapper">
+        <div class="tools_title">SDK & Tools</div>
+        <div class="tools_contents">
+            {% for tool in tools %}
+            <div class="tools-item">
+                <div class="tool_header">
+                    <div class="tool_icon">
+                        <img src="{{ tool['icon'] }}" alt="">
+                    </div>
+                    <div class="tool_title">
+                        {{ tool["title"] }}
+                    </div>
+                </div>
+                <div class="tool_text">
+                    {{ tool["text"] }}
+                </div>
+                <div class="tool_downlowd">
+                    <a href="{{tool[" url"]}}" target="_blank">DOWNLOAD</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="wapper">
+    <!--videos-->
+    <div id="videos" class="videos">
+        <div class="videos_title">Videos</div>
+        <div class="video-contents">
+            {% for video in videos %}
+            <div class="video-item" style="background-image: url({{ video['icon'] }})" >
+                <a href="{{video['url']}}" class="video-link" target="_blank">
+                    <!--<img src="{{ video['icon'] }}" alt="">-->
+                    <img src="/static/images/video_play.png" alt="">
+                    <div class="video_title">{{ video["title"] }}</div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="more_videos_button">
+            <a href="#" class="more_videos">More Videos >>></a>
+        </div>
+    </div>
+    <!--communitys-->
+    <div id="communitys" class="communitys">
+        <div class="communitys_title">Community</div>
+        <div class="community-content">
+            {% for community in communitys %}
+            <div class="community-item">
+                <a href="{{community['url']}}" target="_blank">
+                    <img src="{{ community['icon'] }}" title="{{ community['title'] }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="footer">© 2018 TrustNote Developers - Site Powered by Cleanews WordPress Theme</div>
+</body>
 </html>
