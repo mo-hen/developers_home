@@ -370,6 +370,7 @@ body {
     width: 382px;
     height: 270px;
     box-shadow: 0 2px 14px 0 rgba(55,89,203,0.20);
+    background-size: 100%;
 }
 
 .video-link{

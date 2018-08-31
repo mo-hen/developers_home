@@ -21,7 +21,7 @@
                 <a href="/login">login</a>
                 {% endif %}
                 {% for nav in navs %}
-                <a href="{{ nav[" url"] }}">{{ nav["title"] }}</a>
+                <a href="{{ nav['url'] }}">{{ nav["title"] }}</a>
                 {% endfor %}
 
             </div>
@@ -133,7 +133,7 @@
                     {{ tool["text"] }}
                 </div>
                 <div class="tool_downlowd">
-                    <a href="{{tool[" url"]}}" target="_blank">DOWNLOAD</a>
+                    <a href="{{tool['url']}}" target="_blank">DOWNLOAD</a>
                 </div>
             </div>
             {% endfor %}
