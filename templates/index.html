@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>landing page</title>
+    <title>TrustNote Developers</title>
     <link href="/static/css/style.css?v=1.01" rel="stylesheet">
 </head>
 <body>
@@ -21,7 +21,7 @@
                 <a href="/login">login</a>
                 {% endif %}
                 {% for nav in navs %}
-                <a href="{{ nav[" url"] }}">{{ nav["title"] }}</a>
+                <a href="{{ nav["url"] }}">{{ nav["title"] }}</a>
                 {% endfor %}
 
             </div>
@@ -66,7 +66,7 @@
             {% endfor %}
         </div>
         <div class="more_tasks_button">
-            <a href="#" class="more_tesks">More Samples >>></a>
+            <a href="https://github.com/TrustNoteTasks" target="_blank" class="more_tesks">More Tasks >>></a>
         </div>
     </div>
     <!--samples-->
@@ -85,20 +85,20 @@
                     {{ sample["text"] }}
                 </div>
                 <div class="read">
-                    <a href="{{sample['url']}}" target="_blank">READ</a>
+                    <a href="{{sample['url']}}" target="_blank">SOURCE</a>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="more_samples_button">
-            <a href="#" class="more_samples">More Samples >>></a>
+            <a href="https://github.com/trustnotesamples" target="_blank" class="more_samples">More Samples >>></a>
         </div>
     </div>
     <!--documents-->
     <div id="documents" class="documents">
         <div class="documents_title">Documents</div>
         <div class="doc-img">
-            <img src="" alt="">
+            <img src="{{document.img}}" width="452" height="340" alt="">
         </div>
         <div class="doc-content">
             <div class="document_title">
@@ -108,7 +108,7 @@
                 {{document.text}}
             </div>
             <div class="documents_url">
-                <a class="documents_url_link" href="{{document.url}}">SEE ALL DOCUMENTS</a>
+                <a class="documents_url_link" target="_blank" href="{{document.url}}">SEE ALL DOCUMENTS</a>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
                     {{ tool["text"] }}
                 </div>
                 <div class="tool_downlowd">
-                    <a href="{{tool[" url"]}}" target="_blank">DOWNLOAD</a>
+                    <a href="{{tool["url"]}}" target="_blank">GITHUB</a>
                 </div>
             </div>
             {% endfor %}
@@ -146,7 +146,7 @@
         <div class="videos_title">Videos</div>
         <div class="video-contents">
             {% for video in videos %}
-            <div class="video-item" style="background-image: url({{ video['icon'] }})" >
+            <div class="video-item" style="background-image: url({{ video['icon'] }}?{{date}})" >
                 <a href="{{video['url']}}" class="video-link" target="_blank">
                     <!--<img src="{{ video['icon'] }}" alt="">-->
                     <img src="/static/images/video_play.png" alt="">
@@ -175,6 +175,6 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<div class="footer">© 2018 TrustNote Developers - Site Powered by Cleanews WordPress Theme</div>
+<div class="footer">© 2018 TrustNote Developers</div>
 </body>
 </html>
