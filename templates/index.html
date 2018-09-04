@@ -11,9 +11,8 @@
 <div class="head">
     <div class="wapper">
         <div class="nav">
-            <div class="logo">
-                <img src="/static/images/logo.png" alt="">
-            </div>
+            <div class="logo"></div>   
+            <div class="toggle-menu"></div>
             <div class="menu">
                 {% if "username" in session %}
                 <a href="/user/">{{ session["username"] }}</a>
@@ -37,6 +36,19 @@
                 <img src="{{banner.img}}"/>
             </div>
         </div>
+    </div>
+    <div class="slide-menu">
+            <div class="logo-menu-active"></div>
+            <div class="toggle-menu-close"></div>
+            <div class="clearfix"></div>
+            {% if "username" in session %}
+            <a href="/user/" class="slide-menu-link">{{ session["username"] }}</a>
+            {% else %}
+            <a href="/login" class="slide-menu-link">login</a>
+            {% endif %}
+            {% for nav in navs %}
+            <a href="{{ nav['url'] }}" class="slide-menu-link">{{ nav["title"] }}</a>
+            {% endfor %}
     </div>
 </div>
 <div class="wapper">
@@ -66,7 +78,7 @@
             {% endfor %}
         </div>
         <div class="more_tasks_button">
-            <a href="https://github.com/TrustNoteTasks" target="_blank" class="more_tesks">More Tasks >>></a>
+            <a href="https://github.com/TrustNoteTasks" target="_blank" class="more_tesks">More Tasks</a>
         </div>
     </div>
     <!--samples-->
@@ -91,14 +103,14 @@
             {% endfor %}
         </div>
         <div class="more_samples_button">
-            <a href="https://github.com/trustnotesamples" target="_blank" class="more_samples">More Samples >>></a>
+            <a href="https://github.com/trustnotesamples" target="_blank" class="more_samples">More Samples</a>
         </div>
     </div>
     <!--documents-->
     <div id="documents" class="documents">
         <div class="documents_title">Documents</div>
         <div class="doc-img">
-            <img src="{{document.img}}" width="452" height="340" alt="">
+            <img src="{{document.img}}" alt="">
         </div>
         <div class="doc-content">
             <div class="document_title">
@@ -155,8 +167,9 @@
             </div>
             {% endfor %}
         </div>
+        <div class="clearfix"></div>
         <div class="more_videos_button">
-            <a href="#" class="more_videos">More Videos >>></a>
+            <a href="#" class="more_videos">More Videos</a>
         </div>
     </div>
     <!--communitys-->
@@ -176,5 +189,7 @@
 </div>
 <div class="clearfix"></div>
 <div class="footer">© 2018 TrustNote Developers</div>
+<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/js/index.js?v=1.01"></script>
 </body>
 </html>
