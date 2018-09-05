@@ -73,7 +73,7 @@ body {
 
 .banner_title {
     height: 130px;
-    font-size: 56px;
+    font-size: 50px;
     width: 500px;
     padding-top: 170px;
     color: #fff;
@@ -260,7 +260,6 @@ body {
     width: 452px;
     height: 342px;
     margin-top: 9px;
-    background-color: #00aa88;
     text-align: center;
 }
 
@@ -409,6 +408,13 @@ body {
     height: 270px;
     box-shadow: 0 2px 14px 0 rgba(55,89,203,0.20);
     background-size: 100%;
+}
+
+.mask{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .5;
 }
 
 .video-link{

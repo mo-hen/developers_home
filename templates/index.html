@@ -22,7 +22,6 @@
                 {% for nav in navs %}
                 <a href="{{ nav['url'] }}">{{ nav["title"] }}</a>
                 {% endfor %}
-
             </div>
         </div>
         <div id="banner" class="banner">
@@ -159,11 +158,13 @@
         <div class="video-contents">
             {% for video in videos %}
             <div class="video-item" style="background-image: url({{ video['icon'] }}?{{date}})" >
-                <a href="{{video['url']}}" class="video-link" target="_blank">
-                    <!--<img src="{{ video['icon'] }}" alt="">-->
-                    <img src="/static/images/video_play.png" alt="">
-                    <div class="video_title">{{ video["title"] }}</div>
-                </a>
+                <div class="mask">
+                    <a href="{{video['url']}}" class="video-link" target="_blank">
+                        <!--<img src="{{ video['icon'] }}" alt="">-->
+                        <img src="/static/images/video_play.png" alt="">
+                        <div class="video_title">{{ video["title"] }}</div>
+                    </a>
+                </div>
             </div>
             {% endfor %}
         </div>

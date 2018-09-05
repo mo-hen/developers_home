@@ -5,8 +5,7 @@ from argparse import ArgumentParser
 from peewee import *
 import random
 
-import sys;
-sys.path.append('./');
+
 from models import *
 
 
