@@ -481,6 +481,7 @@ body {
     display: inline-block;
     background: rgba(255,255,255,0.00);
     box-shadow: 0 2px 13px 0 rgba(55,89,203,0.20);
+    overflow: hidden;
 }
 
 .community-item img {
