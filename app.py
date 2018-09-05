@@ -44,7 +44,7 @@ def home():
 
 @app.route('/user')
 def user():
-    return render_template('user.html',session=session)
+    return render_template('user/user.html',session=session)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -70,7 +70,7 @@ def login():
 
     if request.method == 'GET':
         num = random.randint(1,3)
-        return render_template('login.html',num=num)
+        return render_template('user/login.html',num=num)
 
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -84,7 +84,7 @@ def register():
         else:
             return "cantreg"
     if request.method == 'GET':
-        return render_template('register.html')
+        return render_template('user/register.html')
 
 @app.route('/logout')
 def logout():
@@ -406,14 +406,14 @@ def making_wallet():
     if not os.path.exists(user_config_dir):
         os.makedirs(user_config_dir)
     if os.path.exists(user_config_file):
-        return "<script>parent.window.location.href='/'</script>"
+        return "<script>parent.window.location.href='/wallet'</script>"
         
     else:
         #not config
         #return os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
 
         msg = os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
-        return "<script>parent.window.location.href='/'</script>"
+        return "<script>parent.window.location.href='/wallet'</script>"
 
 @app.route('/api/wallet/info')
 def api_info():
