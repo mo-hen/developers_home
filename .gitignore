@@ -3,4 +3,6 @@
 .project
 package-lock.json
 db/landingpage.db
+bin/ttt
+user_config/*
 __pycache__
