@@ -4,15 +4,11 @@ from flask import Flask, jsonify,render_template,request,redirect,url_for,sessio
 from argparse import ArgumentParser
 from peewee import *
 import random
-
-
 from models import *
-
-
+import os
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-
 
 @app.before_request
 def checksession():
@@ -26,9 +22,13 @@ def checksession():
 
         else:
             return redirect(url_for("login"))
-    if "user" in request.path:
+    if "user" in request.path or "wallet" in request.path:
         #验证是否是user
-        pass
+        if "username" in session:
+            pass
+        else:
+            return redirect(url_for("login"))
+
 @app.route('/')
 def home():
     navs = [nav for nav in Nav.select().order_by(Nav.id.desc())]
@@ -39,11 +39,12 @@ def home():
     tools = [tool for tool in Tool.select()]
     videos = [video for video in Video.select()]
     communitys = [community for community in Community.select()]
-
-
-
     return render_template('index.html',banner = banner,navs = navs,tasks = tasks,samples=samples,document=document,tools=tools,videos=videos,communitys=communitys,session=session)
     #return jsonify("no nodes")
+
+@app.route('/user')
+def user():
+    return render_template('user.html',session=session)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -57,6 +58,7 @@ def login():
             if user.passwd == passwd:
 
                 session["username"]=user.username
+                session["userid"]=user.id
                 session["role"]=user.role
                 #以后可以加头像
 
@@ -69,6 +71,20 @@ def login():
     if request.method == 'GET':
         num = random.randint(1,3)
         return render_template('login.html',num=num)
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        passwd = request.form.get('passwd')
+        users = User.select().where(User.username == username)
+        if len(users)==0:
+            User(username=username,passwd=passwd,role="user").save()
+            return "success"
+        else:
+            return "cantreg"
+    if request.method == 'GET':
+        return render_template('register.html')
 
 @app.route('/logout')
 def logout():
@@ -90,6 +106,7 @@ def admin_banner():
     query = Banner().select()
     banner = [banner for banner in query]
     return render_template('admin/banner.html',banner = banner)
+
 @app.route('/admin/banner/update',methods=['POST'])
 def admin_banner_update():
     if request.method == 'POST':
@@ -99,12 +116,12 @@ def admin_banner_update():
         Banner().update(title=title,text=text,img=img).execute()
         return redirect(url_for("admin_banner"))
 
-
 @app.route('/admin/documents',methods=['GET'])
 def admin_documents():
     query = Document().select()
     document = [document for document in query]
     return render_template('admin/documents.html',document = document)
+
 @app.route('/admin/documents/update',methods=['POST'])
 def admin_documents_update():
     if request.method == 'POST':
@@ -114,7 +131,6 @@ def admin_documents_update():
         url=request.form.get('url')
         Document().update(title=title,text=text,img=img,url=url).execute()
         return redirect(url_for("admin_documents"))
-
 
 @app.route('/admin/tasks',methods=['GET'])
 def admin_tasks():
@@ -152,6 +168,7 @@ def admin_taks_update():
         query = task.update(title=title,text=text,icon=icon,users=users,status=status,url=url).where(Task.id == id)
         query.execute()
         return redirect(url_for("admin_tasks"))
+
 @app.route('/admin/tasks/delete',methods=['POST'])
 def admin_tesks_del():
     if request.method == 'POST':
@@ -160,8 +177,6 @@ def admin_tesks_del():
         query = task.delete().where(Task.id == id)
         query.execute()
         return redirect(url_for("admin_tasks"))
-
-
 
 @app.route('/admin/samples',methods=['GET'])
 def admin_samples():
@@ -206,9 +221,6 @@ def admin_samples_del():
         query.execute()
         return redirect(url_for("admin_samples"))
 
-
-
-
 @app.route('/admin/tools',methods=['GET'])
 def admin_tools():
     query = Tool().select()
@@ -251,8 +263,6 @@ def admin_tools_del():
         query = tools.delete().where(Tool.id == id)
         query.execute()
         return redirect(url_for("admin_tools"))
-
-
 
 @app.route('/admin/videos',methods=['GET'])
 def admin_videos():
@@ -297,7 +307,6 @@ def admin_videos_del():
         query.execute()
         return redirect(url_for("admin_videos"))
 
-
 @app.route('/admin/communitys',methods=['GET'])
 def admin_communitys():
     communitys = [community for community in Community().select()]
@@ -337,10 +346,6 @@ def admin_communitys_del():
         query.execute()
         return redirect(url_for("admin_communitys"))
 
-
-
-
-
 @app.route('/admin/navs/insert',methods=['POST'])
 def admin_navs_insert():
     if request.method == 'POST':
@@ -371,6 +376,80 @@ def admin_navs_del():
         query.execute()
         return redirect(url_for("admin_navs"))
 
+
+
+# wallet begin
+
+@app.route('/wallet')
+def wallet():
+    userid = session["userid"]
+    user_config_dir = "user_config/{0}".format(userid)
+    user_config_file = "{0}/settings.json".format(user_config_dir)
+    if os.path.exists(user_config_file):
+        return render_template('wallet/wallet.html',session=session)
+    else:
+        return render_template('wallet/create_wallet.html',session=session)
+
+@app.route('/wallet/import')
+def import_wallet():
+    return render_template('wallet/import.html')
+
+@app.route('/wallet/new')
+def make_a_new_wallet():
+    return render_template('wallet/making_wallet.html')
+
+@app.route('/wallet/making')
+def making_wallet():
+    userid = session["userid"]
+    user_config_dir = "user_config/{0}".format(userid)
+    user_config_file = "{0}/settings.json".format(user_config_dir)
+    if not os.path.exists(user_config_dir):
+        os.makedirs(user_config_dir)
+    if os.path.exists(user_config_file):
+        return "<script>parent.window.location.href='/'</script>"
+        
+    else:
+        #not config
+        #return os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
+
+        msg = os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
+        return "<script>parent.window.location.href='/'</script>"
+
+@app.route('/api/wallet/info')
+def api_info():
+    userid = session["userid"]
+    user_config_dir = "user_config/{0}".format(userid)
+    user_config_file = "{0}/settings.json".format(user_config_dir)
+    if os.path.exists(user_config_file):
+        msg = os.popen("cd {0} && ../../bin/ttt info".format(user_config_dir)).read()
+        msg = msg.replace("'",'"')
+        return jsonify(msg)
+    else:
+        #not config
+        #return os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
+        return "<script>parent.window.location.href='/wallet/new'</script>"
+        
+@app.route('/api/wallet/pay',methods=['POST'])
+def api_pay():
+    userid = session["userid"]
+    user_config_dir = "user_config/{0}".format(userid)
+    user_config_file = "{0}/settings.json".format(user_config_dir)
+    if os.path.exists(user_config_file):
+        to_address = request.form.get('to_address')
+        amount = request.form.get('amount')
+        memo = request.form.get('memo')
+        if to_address and amount:
+            msg = os.popen("cd {0} && ../../bin/ttt send -p {1} {2} -t {3}".format(user_config_dir,to_address,amount,memo)).read()
+            msg = msg.replace("'",'"')
+            return (msg)
+        else:
+            return "error"
+    else:
+        #not config
+        #return os.popen("cd {0} && ../../bin/ttt init".format(user_config_dir)).read()
+        return "error"
+
+# wallet end
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=8080, type=int, help='port to listen on')

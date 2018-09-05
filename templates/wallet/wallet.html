@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>web wallet</title>
+    <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/jsSHA/src/sha.js"></script>
+    <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script><style>
+            .well{
+                width: 80%;
+                margin: 0 auto;
+                margin-top: 50px;
+            }
+        </style>
+</head>
+<body>
+    <div class="well">
+    {% if session %}
+        <p>{{session["username"]}}</p>
+        <a href="/logout">logout</a>
+        <h2><span id="balance"></span> MN</h2>
+        <p><span id="address"></span></p>
+
+        <h2>payment</h2>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="address" id="to_address">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="amount" id="amount">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" id="memo" placeholder="memo"></textarea>
+        </div>
+        
+        <button id="pay" class="btn btn-primary" onclick="pay()">pay</button></p>
+        
+
+    <script>
+        function get_balance(){
+            $.get("/api/wallet/info",function(info){
+                balance = JSON.parse(info).balance;
+                $("#balance").text(balance)
+            });
+        }
+        function get_address(){
+            $.get("/api/wallet/info",function(info){
+                address = JSON.parse(info).address;
+                console.log(address);
+                $("#address").text(address)
+            });
+        }
+
+        function pay(){
+            var to_address = $("#to_address").val();
+            var amount = $("#amount").val();
+            var memo = $("#memo").val();
+
+            $.post("/api/wallet/pay",{to_address:to_address,amount:amount,memo:memo},function(data){
+                console.log(data)
+                alert("ok");
+                $("#to_address").val("");
+                $("#amount").val("");
+                $("#memo").val("");
+            });
+
+        }
+
+
+        get_balance();
+        get_address();
+
+        setInterval(get_balance,3000);
+    </script>
+    {% endif %}
+</div>
+</body>
+</html>

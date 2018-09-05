@@ -15,7 +15,7 @@
             <div class="toggle-menu"></div>
             <div class="menu">
                 {% if "username" in session %}
-                <a href="/user/">{{ session["username"] }}</a>
+                <a href="/user">{{ session["username"] }}</a>
                 {% else %}
                 <a href="/login">login</a>
                 {% endif %}
